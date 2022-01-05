@@ -109,5 +109,7 @@ int main(int argc, char** argv)
         printf("%s\n", string_representation);
         delete[] string_representation;
     }
+
+    return 0;
 }
 
