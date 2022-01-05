@@ -1,86 +1,9 @@
 #include <cstdio>
 #include <cstdlib>
-#include <cstring>
-#include <ctime>
 
+#include "random.hpp"
+#include "RoomContent.hpp"
 
-void init_random()
-{
-    srand(time(NULL));
-}
-
-
-unsigned short d6_roll()
-{
-   return rand() % 6 + 1; 
-}
-
-
-class RoomContent
-{
-    unsigned int index;
-    bool hasMonsters;
-    bool hasTrap;
-    bool hasTreasure;
-
-    static unsigned int createdRooms;
-    
-    public:
-    
-        RoomContent()
-        {
-            unsigned short danger_roll = d6_roll();
-            unsigned short treasure_roll = d6_roll();
-            
-            if (danger_roll <= 2)
-            {
-                hasMonsters = true;
-                hasTrap = false;
-            }
-            else if (danger_roll == 3)
-            {
-                hasMonsters = false;
-                hasTrap = true;
-            }
-            else
-            {
-                hasMonsters = false;
-                hasTrap = false;
-            }
-              
-
-            if (treasure_roll == 1 || (hasMonsters && treasure_roll <= 3))
-                hasTreasure = true;
-            else
-                hasTreasure = false;
-
-            createdRooms += 1;
-            index = createdRooms;
-        }
-
-        char* toString() const
-        {
-            const size_t MAX_SIZE = 128;
-            char buffer[MAX_SIZE];
-            const char* monsters = hasMonsters ? "has monsters" : "has no monsters"; 
-            const char* trap = hasTrap ? "has trap" : "has no trap";
-            const char* treasure = hasTreasure ? "has treasure" : "has no treasure";
-            sprintf(buffer, "Room #%d: %s; %s; %s.",
-                    index, monsters, trap, treasure);
-            char* result = new char[strlen(buffer)];
-            strcpy(result, buffer);
-            return result;
-        }
-
-        static void resetCreatedRoomsCounter()
-        {
-            createdRooms = 0;
-        }
-
-};
-
-
-unsigned int RoomContent::createdRooms = 0;
 
 int main(int argc, char** argv)
 {
