@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.18.4)
 project(RoomGenerator)
 
 set(CMAKE_CXX_STANDARD 98)
