@@ -7,8 +7,7 @@ set(CMAKE_CXX_STANDARD 98)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(SOURCES generator-cli.cpp random.cpp random.hpp RoomContent.cpp RoomContent.hpp)
-add_executable(parser parse.c fruit.c fruit.h)
-target_link_libraries(parser yaml)
+add_executable(room-generator-cli generator-cli.cpp random.cpp random.hpp RoomContent.cpp RoomContent.hpp)
 
 if (CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
