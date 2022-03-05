@@ -1,0 +1,28 @@
+monsters:
+  Orc:
+    minimal-count: 1
+    maximal-count: 4
+    AC: 6
+    HD: 1
+    HD-stars: 0
+    HP: [5, 4, 3, 2]
+    attacks: 1
+    damage: 1d6 or by weapon
+    movement-turn: 90
+    movement-round: 30
+    saves-as: Fighter 1
+    morale: 8
+  Troglodyte:
+    minimal-count: 1
+    maximal-count: 2
+    AC: 5
+    HD: 2
+    HD-stars: 1
+    HP: [7, 3]
+    attacks: 3
+    damage: 1d4/1d4/1d4
+    movement-turn: 120
+    movement-round: 40
+    saves-as: Fighter 2
+    morale: 9
+
