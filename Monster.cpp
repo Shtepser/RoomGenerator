@@ -18,8 +18,15 @@ void Monster::print()
     for (int i = 0; i < hit_dices_stars; i++)
         printf("*");
     printf(" [");
+    bool first_variant = true;
     for (HitPointsVariant *v = hit_points_variants; v != NULL; v = v->next)
-        printf("%d ", v->variant);
+    {
+        if (!first_variant)
+            printf(", ");
+        else
+            first_variant = false;
+        printf("%d", v->variant);
+    }
     printf("]\n");
     const char* attack_string = (attacks == 1 ? "attack" : "attacks");
     printf("\t%d %s; damage %s\n", attacks, attack_string, damage);
