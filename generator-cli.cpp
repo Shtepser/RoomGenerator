@@ -1,5 +1,3 @@
-#include "yaml.h"
-
 #include <cstdio>
 #include <cstdlib>
 

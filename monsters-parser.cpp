@@ -97,15 +97,19 @@ class MonstersParser
             current_monster = &monsters;
         }
 
-        void ParseFile(FILE* file)
-        {
-            yaml_parser_set_input_file(&parser, file);
-            state = PARSING_STARTED;
-            
-            while (state != PARSING_ENDED)
-                ReadFromStream();
 
-            state = NOT_PARSING;
+        void ParseStdin()
+        {
+            Parse(stdin);
+        }
+
+        void ParseFile(const char* path)
+        {
+            FILE* file = fopen(path, "r");
+            if (file == NULL)
+                throw MonstersParsingError("Cannot open file!");
+            Parse(file);
+            fclose(file);
         }
 
         ~MonstersParser()
@@ -115,6 +119,17 @@ class MonstersParser
         }
 
     private:
+        
+        void Parse(FILE* file)
+        {
+            yaml_parser_set_input_file(&parser, file);
+            state = PARSING_STARTED;
+            
+            while (state != PARSING_ENDED)
+                ReadFromStream();
+
+            state = NOT_PARSING;
+        }
 
         void ReadFromStream()
         {
@@ -148,7 +163,7 @@ class MonstersParser
         }
 
         void ProcessStream()
-        {
+        { 
             switch (state)
             {
                 case PARSING_STARTED:
@@ -341,7 +356,7 @@ int main()
     MonstersParser mparser = MonstersParser();
     try
     {
-        mparser.ParseFile(stdin);
+        mparser.ParseFile("monsters.yaml");
     }
     catch (MonstersParsingError &err)
     {

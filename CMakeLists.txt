@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 98)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(SOURCES generator-cli.cpp random.cpp random.hpp RoomContent.cpp RoomContent.hpp)
-add_executable(room-generator-cli generator-cli.cpp random.cpp random.hpp RoomContent.cpp RoomContent.hpp)
+add_executable(room-generator-cli ${SOURCES})
 
 add_executable(monsters-parser monsters-parser.cpp Monster.cpp Monster.hpp)
 target_link_libraries(monsters-parser yaml)
